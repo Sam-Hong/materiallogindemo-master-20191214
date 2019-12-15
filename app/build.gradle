@@ -26,4 +26,6 @@ dependencies {
     implementation 'com.jakewharton:butterknife:8.8.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
+    implementation files('D:/Android_Studio_Project/materiallogindemo-master-20191214/libs/YouTubeAndroidPlayerApi.jar')
 }

@@ -18,7 +18,13 @@ public class EnglishCourseActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> listView, View itemView, int position, long id) {
                 if (position==0){
-                    Intent intent=new Intent(EnglishCourseActivity.this,LawCourseActivity.class);
+                    Intent intent=new Intent(EnglishCourseActivity.this,WebViewActivity.class);
+                    intent.putExtra("url","https://drive.google.com/file/d/1uFZC91rmoiHfaUoaF5jkopQLAs7waEgJ/view");
+                    startActivity(intent);
+                }
+                else if (position==1){
+                    Intent intent=new Intent(EnglishCourseActivity.this,YoutubeViewActivity.class);
+                    intent.putExtra("VIDEO_ID","fiPccRy6ZDw");
                     startActivity(intent);
                 }
             }
