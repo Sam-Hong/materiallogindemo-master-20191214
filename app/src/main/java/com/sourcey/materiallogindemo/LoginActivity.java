@@ -22,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.input_email) EditText _emailText;
     @BindView(R.id.input_password) EditText _passwordText;
     @BindView(R.id.btn_login) Button _loginButton;
-    @BindView(R.id.link_signup) TextView _signupLink;
+//    @BindView(R.id.link_signup) TextView _signupLink;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        _signupLink.setOnClickListener(new View.OnClickListener() {
+        /*_signupLink.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
             }
-        });
+        });*/
     }
 
     public void login() {

@@ -1,6 +1,47 @@
 <resources>
-    <string name="app_name">Material Login Example</string>
+    <string name="app_name">CGA</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <string-array name="options">
+        <item>海巡法規</item>
+        <item>射擊通報</item>
+        <item>海巡統計</item>
+        <item>標準作業程序</item>
+        <item>特殊船舶</item>
+        <item>數位學習</item>
+        <item>常見船舶</item>
+        <item>變更密碼</item>
+    </string-array>
+
+    <string-array name="courses">
+        <item>法律法規</item>
+        <item>勤務專業</item>
+        <item>海巡英文</item>
+    </string-array>
+
+    <string-array name="laws">
+        <item>海岸巡防法</item>
+        <item>動植物檢疫法規</item>
+        <item>災害防救法規</item>
+        <item>水域遊憩法規</item>
+    </string-array>
+
+    <string-array name="duties">
+        <item>海巡118專線運用</item>
+        <item>非洲豬瘟防疫</item>
+        <item>雙氣囊充氣式救生衣簡介</item>
+        <item>水中自救-水母漂</item>
+        <item>水中自救-仰漂</item>
+        <item>水中自救-韻律呼吸</item>
+        <item>CPR+AED</item>
+        <item>槍械(炮)訓練規範</item>
+        <item>綜合體技訓練手冊</item>
+    </string-array>
+
+    <string-array name="englishs">
+        <item>海事英文</item>
+        <item>情境英文-非洲豬瘟安檢篇</item>
+    </string-array>
 </resources>
