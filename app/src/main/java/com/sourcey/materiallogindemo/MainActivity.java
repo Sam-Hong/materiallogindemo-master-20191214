@@ -12,13 +12,19 @@ import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
 
+    private boolean login_token;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+        GlobalVariable gv=(GlobalVariable)getApplicationContext();
+        login_token=gv.getLoginToken();
+        if(login_token!=true){
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
 
         AdapterView.OnItemClickListener itemClickListener=new AdapterView.OnItemClickListener() {
             @Override
@@ -48,8 +54,11 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.logout) {
+            GlobalVariable gv=(GlobalVariable)getApplicationContext();
+            gv.setLoginToken(false);
+            Intent i=new Intent(this,LoginActivity.class);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);

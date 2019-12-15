@@ -2,6 +2,8 @@ package com.sourcey.materiallogindemo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.youtube.player.YouTubeBaseActivity;
@@ -57,4 +59,36 @@ public class YoutubeViewActivity extends YouTubeBaseActivity implements YouTubeP
     protected YouTubePlayer.Provider getYouTubePlayerProvider() {
         return youTubeView;
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_custom, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.home) {
+            Intent i=new Intent(this,MainActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
+        }
+        else if (id==R.id.logout){
+            GlobalVariable gv=(GlobalVariable)getApplicationContext();
+            gv.setLoginToken(false);
+            Intent i=new Intent(this,MainActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 }
