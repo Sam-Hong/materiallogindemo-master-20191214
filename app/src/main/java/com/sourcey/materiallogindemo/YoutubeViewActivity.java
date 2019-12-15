@@ -2,16 +2,17 @@ package com.sourcey.materiallogindemo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 import com.google.android.youtube.player.YouTubePlayerView;
 
-public class YoutubeViewActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
+public class YoutubeViewActivity extends AppCompatActivity implements YouTubePlayer.OnInitializedListener {
 
     private static final int RECOVERY_REQUEST = 1;
     public static final String API_KEY="AIzaSyDyAOb3PB3dlN4JdPk-tvRSP9_sYJsq56I";
@@ -27,8 +28,11 @@ public class YoutubeViewActivity extends YouTubeBaseActivity implements YouTubeP
         Intent intent=getIntent();
         VIDEO_ID=intent.getStringExtra("VIDEO_ID");
 
-        youTubeView = (YouTubePlayerView) findViewById(R.id.show_youtube_view);
-        youTubeView.initialize(API_KEY, this);
+        /*youTubeView = (YouTubePlayerView) findViewById(R.id.show_youtube_view);
+        youTubeView.initialize(API_KEY, this);*/
+
+        YouTubePlayerSupportFragment frag=(YouTubePlayerSupportFragment) getSupportFragmentManager().findFragmentById(R.id.youtube_fragment);
+        frag.initialize(API_KEY,this);
     }
 
     @Override

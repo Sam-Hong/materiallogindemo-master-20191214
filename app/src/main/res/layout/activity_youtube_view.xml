@@ -8,8 +8,13 @@
     android:background="@drawable/background"
     tools:context="com.sourcey.materiallogindemo.YoutubeViewActivity">
 
-    <com.google.android.youtube.player.YouTubePlayerView
+    <!--<com.google.android.youtube.player.YouTubePlayerView
         android:id="@+id/show_youtube_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content" />-->
+    <fragment
+        android:name="com.google.android.youtube.player.YouTubePlayerSupportFragment"
+        android:id="@+id/youtube_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 </LinearLayout>
