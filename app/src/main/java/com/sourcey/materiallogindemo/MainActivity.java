@@ -13,11 +13,18 @@ import android.widget.ListView;
 public class MainActivity extends AppCompatActivity {
 
     private boolean login_token;
+    ListView simpleList;
+    String List[] = {"海巡法規", "射擊通報", "海巡統計", "標準作業程序", "特殊船舶", "數位學習","常見船舶","變更密碼"};
+    int flags[] = {R.drawable.opt01, R.drawable.opt02, R.drawable.opt03, R.drawable.opt04, R.drawable.opt05, R.drawable.opt06,R.drawable.opt07,R.drawable.opt08};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        simpleList = (ListView) findViewById(R.id.list_options);
+        MainAdapter mainAdapter = new MainAdapter(getApplicationContext(), List, flags);
+        simpleList.setAdapter(mainAdapter);
 
         GlobalVariable gv=(GlobalVariable)getApplicationContext();
         login_token=gv.getLoginToken();

@@ -11,10 +11,18 @@ import android.widget.ListView;
 
 public class LearnCategoryActivity extends AppCompatActivity {
 
+    ListView simpleList;
+    String CategoryList[] = {"法律法規", "勤務專業", "海巡英文"};
+    int flags[] = {R.drawable.alt05, R.drawable.alt06, R.drawable.alt07};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_learn_category);
+
+        simpleList = (ListView) findViewById(R.id.list_courses);
+        CategoryAdapter categoryAdapter = new CategoryAdapter(getApplicationContext(), CategoryList, flags);
+        simpleList.setAdapter(categoryAdapter);
 
         AdapterView.OnItemClickListener itemClickListener=new AdapterView.OnItemClickListener() {
             @Override

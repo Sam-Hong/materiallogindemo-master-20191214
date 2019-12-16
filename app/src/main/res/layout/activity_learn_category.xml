@@ -10,8 +10,7 @@
     <ListView
         android:id="@+id/list_courses"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/courses">
+        android:layout_height="wrap_content">
     </ListView>
 
 </LinearLayout>

@@ -11,10 +11,18 @@ import android.widget.ListView;
 
 public class LawCourseActivity extends AppCompatActivity {
 
+    ListView simpleList;
+    String List[] = {"pdf","pdf","pdf","pdf"};
+    String flags[] = {"海岸巡防法","動植物檢疫法規","災害防救法規","水域遊憩法規"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_law_course);
+
+        simpleList = (ListView) findViewById(R.id.list_laws);
+        LawAdapter lawAdapter = new LawAdapter(getApplicationContext(), List, flags);
+        simpleList.setAdapter(lawAdapter);
 
         AdapterView.OnItemClickListener itemClickListener=new AdapterView.OnItemClickListener() {
             @Override

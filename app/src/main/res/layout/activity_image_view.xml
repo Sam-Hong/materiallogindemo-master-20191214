@@ -7,7 +7,7 @@
     android:background="@drawable/background"
     android:orientation="vertical"
     android:paddingLeft="24dp"
-    android:paddingTop="56dp"
+    android:paddingTop="24dp"
     android:paddingRight="24dp"
     tools:context="com.sourcey.materiallogindemo.ImageViewActivity">
 

@@ -11,10 +11,18 @@ import android.widget.ListView;
 
 public class DutyCourseActivity extends AppCompatActivity {
 
+    ListView simpleList;
+    String List[] = {"pdf","pdf","jpg","youtube","youtube","youtube","youtube","pdf","pdf"};
+    String flags[] = {"海巡118專線運用","非洲豬瘟防疫","雙氣囊充氣式救生衣簡介","水中自救-水母漂","水中自救-仰漂","水中自救-韻律呼吸","CPR+AED","槍械(炮)訓練規範","綜合體技訓練手冊"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_duty_course);
+
+        simpleList = (ListView) findViewById(R.id.list_duties);
+        DutyAdapter dutyAdapter = new DutyAdapter(getApplicationContext(), List, flags);
+        simpleList.setAdapter(dutyAdapter);
 
         AdapterView.OnItemClickListener itemClickListener=new AdapterView.OnItemClickListener() {
             @Override

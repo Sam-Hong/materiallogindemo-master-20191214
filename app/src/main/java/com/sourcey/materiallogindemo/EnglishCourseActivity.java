@@ -11,10 +11,18 @@ import android.widget.ListView;
 
 public class EnglishCourseActivity extends AppCompatActivity {
 
+    ListView simpleList;
+    String List[] = {"pdf","youtube"};
+    String flags[] = {"海事英文","情境英文-非洲豬瘟安檢篇"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_english_course);
+
+        simpleList = (ListView) findViewById(R.id.list_englishs);
+        EnglishAdapter englishAdapter = new EnglishAdapter(getApplicationContext(), List, flags);
+        simpleList.setAdapter(englishAdapter);
 
         AdapterView.OnItemClickListener itemClickListener=new AdapterView.OnItemClickListener() {
             @Override
