@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 public class WebViewActivity extends AppCompatActivity {
 
@@ -22,11 +23,11 @@ public class WebViewActivity extends AppCompatActivity {
         Intent intent=getIntent();
         url=intent.getStringExtra("url");
 
-        WebView myWebView=new WebView(this);
-        //新建myWebView使用當前的view，若使用在xml建立的webview會產生問題
+        WebView myWebView=(WebView)findViewById(R.id.web_view);
         myWebView.getSettings().setJavaScriptEnabled(true);
         myWebView.getSettings().setPluginState(WebSettings.PluginState.ON);
-        setContentView(myWebView);
+        myWebView.setWebViewClient(new WebViewClient());
+//        setContentView(myWebView);
         myWebView.loadUrl(url);
     }
 

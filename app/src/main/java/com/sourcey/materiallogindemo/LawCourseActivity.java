@@ -30,7 +30,10 @@ public class LawCourseActivity extends AppCompatActivity {
                 if (position==0){
                     Intent intent=new Intent(LawCourseActivity.this,WebViewActivity.class);
                     intent.putExtra("url","https://drive.google.com/file/d/1Y-OuKwJqmJhhhxN2Z1-pbwA2nxmRQf4C/view");
+//                    intent.putExtra("url","http://www.cga.gov.tw/CgaSearchZone/web/index#"); //for test
+//                    Intent browserIntent=new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.cga.gov.tw/wralawgip/FileDownload.jsp?id=8a8181db69b43f60016b8c71a4f2004d"));
                     startActivity(intent);
+//                    startActivity(browserIntent);
                 }
                 else if (position==1){
                     Intent intent=new Intent(LawCourseActivity.this,WebViewActivity.class);
