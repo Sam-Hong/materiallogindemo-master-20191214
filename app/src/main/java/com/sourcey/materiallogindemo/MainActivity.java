@@ -38,11 +38,14 @@ public class MainActivity extends AppCompatActivity {
                 if (position==5){
                     Intent intent=new Intent(MainActivity.this,LearnCategoryActivity.class);
                     startActivity(intent);
-                }
-                else if (position==6){
+                } else if (position==6){
                     Intent intent=new Intent(MainActivity.this,CommonShipCategoryActivity.class);
                     startActivity(intent);
+                } else if(position==7){
+                    Intent intent=new Intent(MainActivity.this,ChangePasswordCategoryActivity.class);
+                    startActivity(intent);
                 }
+
             }
         };
         ListView listView =(ListView) findViewById(R.id.list_options);
