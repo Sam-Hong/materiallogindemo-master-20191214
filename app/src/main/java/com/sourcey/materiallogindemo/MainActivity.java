@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-
 public class MainActivity extends AppCompatActivity {
 
     private boolean login_token;
@@ -38,6 +37,10 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> listView, View itemView, int position, long id) {
                 if (position==5){
                     Intent intent=new Intent(MainActivity.this,LearnCategoryActivity.class);
+                    startActivity(intent);
+                }
+                else if (position==6){
+                    Intent intent=new Intent(MainActivity.this,CommonShipCategoryActivity.class);
                     startActivity(intent);
                 }
             }

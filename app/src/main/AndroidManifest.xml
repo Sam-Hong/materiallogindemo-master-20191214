@@ -3,6 +3,8 @@
     package="com.sourcey.materiallogindemo">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".GlobalVariable"
@@ -10,7 +12,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-        <activity android:name=".EnglishListView"></activity>
+        <activity android:name=".CommonShipCategoryActivity"></activity>
+        <activity android:name=".EnglishListView" />
         <activity android:name=".DutyListView" />
         <activity android:name=".LawListView" />
         <activity android:name=".CategoryListView" />

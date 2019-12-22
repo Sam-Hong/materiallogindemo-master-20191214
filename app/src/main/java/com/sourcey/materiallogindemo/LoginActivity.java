@@ -2,6 +2,10 @@ package com.sourcey.materiallogindemo;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -16,8 +20,9 @@ import butterknife.ButterKnife;
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
+    boolean loginOrNot;
 
-    @BindView(R.id.input_email) EditText _emailText;
+    @BindView(R.id.input_identification) EditText _identificationText;
     @BindView(R.id.input_password) EditText _passwordText;
     @BindView(R.id.btn_login) Button _loginButton;
 //    @BindView(R.id.link_signup) TextView _signupLink;
@@ -65,18 +70,42 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog.setMessage("Authenticating...");
         progressDialog.show();
 
-        String email = _emailText.getText().toString();
+        String identification = _identificationText.getText().toString();
         String password = _passwordText.getText().toString();
 
         // TODO: Implement your own authentication logic here.
+
+        if(identification.length() > 0 && password.length() >0) {
+            SQLiteOpenHelper TestDBHelper = new DatabaseHelper(this);
+            try {
+                SQLiteDatabase db = TestDBHelper.getReadableDatabase();
+                Cursor cursor =db.rawQuery("SELECT * FROM users WHERE identification=? AND password=?", new String[]{identification,password});
+                if(cursor!=null){
+                    if(cursor.getCount()>0){
+                        loginOrNot=true;
+                        cursor.close();
+                    } else{
+                        loginOrNot=false;
+                        cursor.close();
+                    }
+                }
+                db.close();
+            } catch (SQLException e) {
+                Toast toast = Toast.makeText(this, "Database unavailable", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        }
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
                         // On complete call either onLoginSuccess or onLoginFailed
-                        onLoginSuccess();
-                        // onLoginFailed();
-                        progressDialog.dismiss();
+                        if(loginOrNot){
+                            onLoginSuccess();
+                        }else{
+                            onLoginFailed();
+                            progressDialog.dismiss();
+                        }
                     }
                 }, 3000);
     }
@@ -116,14 +145,14 @@ public class LoginActivity extends AppCompatActivity {
     public boolean validate() {
         boolean valid = true;
 
-        String email = _emailText.getText().toString();
+        String identification = _identificationText.getText().toString();
         String password = _passwordText.getText().toString();
 
-        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            _emailText.setError("enter a valid email address");
+        if (identification.isEmpty()){ // || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            _identificationText.setError("enter a valid identification");
             valid = false;
         } else {
-            _emailText.setError(null);
+            _identificationText.setError(null);
         }
 
         if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
