@@ -35,7 +35,11 @@ public class MainActivity extends AppCompatActivity {
         AdapterView.OnItemClickListener itemClickListener=new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> listView, View itemView, int position, long id) {
-                if (position==3){
+
+                if (position==0) {
+                    Intent intent=new Intent(MainActivity.this,CgaRegulationsActivity.class);
+                    startActivity(intent);
+                }else if (position==3){
                     Intent intent=new Intent(MainActivity.this,SopCategoryActivity.class);
                     startActivity(intent);
                 } else if (position==5){
