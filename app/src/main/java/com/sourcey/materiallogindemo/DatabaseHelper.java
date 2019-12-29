@@ -51,7 +51,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
                     + "password text not null);");
         }
         if (oldVersion<2){
-            AddUser(db,"a123","a123");
+            AddUser(db,"a123","s123");
         }
     }
 

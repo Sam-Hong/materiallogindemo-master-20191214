@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_volley"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.sourcey.materiallogindemo.VolleyActivity">
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="getJsonResponse"
+        android:text="JSON Response"></Button>
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="getJsonResponsePost"
+        android:text="JSON Response Post"></Button>
+
+    <TextView
+        android:id="@+id/server_resp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:textColor="@color/white"
+        android:textSize="24dp"></TextView>
+
+    <!--<ImageView
+        android:id="@+id/server_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></ImageView>-->
+
+    <!--<Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="getStringResponse"
+        android:text="String Response"></Button>-->
+
+    <!--<Button
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="getImage"
+        android:text="Get Image"></Button>-->
+
+    <!--<Button
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="getStringResponsePost"
+        android:text="String Post"></Button>-->
+
+</LinearLayout>

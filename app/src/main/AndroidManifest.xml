@@ -12,10 +12,11 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-        <activity android:name=".SopCategoryActivity"></activity>
+        <activity android:name=".VolleyActivity"></activity>
+        <activity android:name=".SopCategoryActivity" />
         <activity
             android:name=".ChangePasswordCategoryActivity"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
         <activity android:name=".CommonShipCategoryActivity" />
         <activity android:name=".EnglishListView" />
         <activity android:name=".DutyListView" />
