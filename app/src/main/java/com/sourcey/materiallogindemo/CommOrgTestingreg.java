@@ -9,18 +9,18 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-public class CommOrgProcedure extends AppCompatActivity {
+public class CommOrgTestingreg extends AppCompatActivity {
 
     ListView simpleList;
     String[] List = {"pdf","pdf"};
-    String[] flags = {"1海洋委員會海巡署處務規程", "1海洋委員會海巡署處務規程總說明"};
+    String[] flags = {"5海洋委員會海巡署偵防分署辦事細則", "5海洋委員會海巡署偵防分署辦事細則總說明"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_comm_org_procedure);
+        setContentView(R.layout.activity_comm_org_testingreg);
 
-        simpleList = (ListView) findViewById(R.id.org_procedure);
+        simpleList = (ListView) findViewById(R.id.org_testingreg);
         DutyAdapter dutyAdapter = new DutyAdapter(getApplicationContext(), List, flags);
         simpleList.setAdapter(dutyAdapter);
 
@@ -28,18 +28,18 @@ public class CommOrgProcedure extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> listView, View itemView, int position, long id) {
                 if (position==0){
-                    Intent intent=new Intent(CommOrgProcedure.this,WebViewActivity.class);
-                    intent.putExtra("url","https://drive.google.com/file/d/13jzzDTtE9kf1uI34XOUkQzkl_d7xJU7g/preview");
+                    Intent intent=new Intent(CommOrgTestingreg.this,WebViewActivity.class);
+                    intent.putExtra("url","https://drive.google.com/file/d/1NEIYC1Q5e8k3Ztk92jslueW2dRRWurkb/preview");
                     startActivity(intent);
                 }
                 else if (position==1){
-                    Intent intent=new Intent(CommOrgProcedure.this,WebViewActivity.class);
-                    intent.putExtra("url","https://drive.google.com/file/d/1onm506A0E8ivTCheUCIaD6_-WFoMTXgn/preview");
+                    Intent intent=new Intent(CommOrgTestingreg.this,WebViewActivity.class);
+                    intent.putExtra("url","https://drive.google.com/file/d/1k4gzJJJU9wv4e8YEhRC2HjXEx2k5y62S/preview");
                     startActivity(intent);
                 }
             }
         };
-        ListView listCourses=(ListView) findViewById(R.id.org_procedure);
+        ListView listCourses=(ListView) findViewById(R.id.org_testingreg);
         listCourses.setOnItemClickListener(itemClickListener);
     }
 
@@ -73,4 +73,5 @@ public class CommOrgProcedure extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

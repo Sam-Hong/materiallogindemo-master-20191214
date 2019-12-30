@@ -9,18 +9,19 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-public class CommOrgProcedure extends AppCompatActivity {
+public class CommDealCompen extends AppCompatActivity {
+
 
     ListView simpleList;
-    String[] List = {"pdf","pdf"};
-    String[] flags = {"1海洋委員會海巡署處務規程", "1海洋委員會海巡署處務規程總說明"};
+    String[] List = {"pdf"};
+    String[] flags = {"海岸巡防機關人員使用器械致人傷亡財產損失醫療費慰撫金喪葬費補償金賠償金支給標準"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_comm_org_procedure);
+        setContentView(R.layout.activity_comm_deal_compen);
 
-        simpleList = (ListView) findViewById(R.id.org_procedure);
+        simpleList = (ListView) findViewById(R.id.deal_compen);
         DutyAdapter dutyAdapter = new DutyAdapter(getApplicationContext(), List, flags);
         simpleList.setAdapter(dutyAdapter);
 
@@ -28,18 +29,13 @@ public class CommOrgProcedure extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> listView, View itemView, int position, long id) {
                 if (position==0){
-                    Intent intent=new Intent(CommOrgProcedure.this,WebViewActivity.class);
-                    intent.putExtra("url","https://drive.google.com/file/d/13jzzDTtE9kf1uI34XOUkQzkl_d7xJU7g/preview");
-                    startActivity(intent);
-                }
-                else if (position==1){
-                    Intent intent=new Intent(CommOrgProcedure.this,WebViewActivity.class);
-                    intent.putExtra("url","https://drive.google.com/file/d/1onm506A0E8ivTCheUCIaD6_-WFoMTXgn/preview");
+                    Intent intent=new Intent(CommDealCompen.this,WebViewActivity.class);
+                    intent.putExtra("url","https://drive.google.com/file/d/1agowDLhMuIPG7d_4wc9U_5hBrp2wImif/preview");
                     startActivity(intent);
                 }
             }
         };
-        ListView listCourses=(ListView) findViewById(R.id.org_procedure);
+        ListView listCourses=(ListView) findViewById(R.id.deal_compen);
         listCourses.setOnItemClickListener(itemClickListener);
     }
 

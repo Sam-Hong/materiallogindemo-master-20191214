@@ -16,7 +16,8 @@ import android.widget.TextView;
 public class CommandOrgActivity extends AppCompatActivity {
 
     String[] CategoryList = {"本署及所屬機關構編制表使用條例", "海洋委員會海巡署處務規程使用條例", "海洋委員會海巡署各地區分署組織準則使用條例"
-            , "海洋委員會海巡署各地區分署辦事細則使用條例", "海洋委員會海巡署偵防分署組織規程使用條例", "海洋委員會海巡署教育訓練測考中心組織規程使用條例"
+            , "海洋委員會海巡署各地區分署辦事細則使用條例", "海洋委員會海巡署偵防分署組織規程使用條例", "海洋委員會海巡署偵防分署辦事細則使用條例"
+            , "海洋委員會海巡署教育訓練測考中心組織規程使用條例", "海洋委員會海巡署教育訓練測考中心辦事細則使用條例"
     };
 
     @Override
@@ -57,6 +58,14 @@ public class CommandOrgActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else if (position==5){
+                    Intent intent=new Intent(CommandOrgActivity.this,CommOrgTestingreg.class);
+                    startActivity(intent);
+                }
+                else if (position==6){
+                    Intent intent=new Intent(CommandOrgActivity.this,CommOrgPIrules.class);
+                    startActivity(intent);
+                }
+                else if (position==7){
                     Intent intent=new Intent(CommandOrgActivity.this,CommOrgTesting.class);
                     startActivity(intent);
                 }
