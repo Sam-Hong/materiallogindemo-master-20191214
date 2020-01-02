@@ -11,6 +11,6 @@
     <string name="seek_to">Jump To</string>
     <string name="seek_to_hint">Seconds</string>
 
-    <string name="json_get_url">http://www.cga.gov.tw/CgaSearchZone/web/login</string>
-    <string name="json_post_url">http://www.cga.gov.tw/CgaSearchZone/api/common/login</string>
+    <string name="json_login_url">http://www.cga.gov.tw/CgaSearchZone/api/common/login</string>
+    <string name="json_reset_url">http://www.cga.gov.tw/CgaSearchZone/api/user/password/reset</string>
 </resources>

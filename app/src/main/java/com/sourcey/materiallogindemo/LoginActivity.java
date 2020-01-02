@@ -26,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
     boolean loginOrNot=false;
+    String authorization;
 
     RequestQueue requestQueue;
     static final String REQ_TAG = "VACTIVITY";
@@ -101,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        String url = getResources().getString(R.string.json_post_url);
+        String url = getResources().getString(R.string.json_login_url);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, json,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -110,6 +111,9 @@ public class LoginActivity extends AppCompatActivity {
                         try {
                             if (response.getString("data").length()>0){
                                 loginOrNot=true;
+                                authorization = response.getString("accessToken");
+                                GlobalVariable gv=(GlobalVariable) getApplicationContext();
+                                gv.setAuthorization(authorization);
                             } else {
                                 loginOrNot=false;
                             }
