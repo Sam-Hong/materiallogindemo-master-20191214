@@ -19,6 +19,10 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.CookieHandler;
+import java.net.CookieManager;
+import java.net.CookiePolicy;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -27,7 +31,6 @@ public class LoginActivity extends AppCompatActivity {
     private static final int REQUEST_SIGNUP = 0;
     boolean loginOrNot=false;
     String authorization;
-
     RequestQueue requestQueue;
     static final String REQ_TAG = "VACTIVITY";
 
@@ -110,10 +113,15 @@ public class LoginActivity extends AppCompatActivity {
 //                        serverResp.setText("String Response : "+ response.toString());
                         try {
                             if (response.getString("data").length()>0){
-                                loginOrNot=true;
-                                authorization = response.getString("accessToken");
-                                GlobalVariable gv=(GlobalVariable) getApplicationContext();
-                                gv.setAuthorization(authorization);
+
+                                try {
+                                    authorization = response.getJSONObject("data").getString("accessToken");
+                                    GlobalVariable gv = (GlobalVariable) getApplicationContext();
+                                    gv.setAuthorization(authorization);
+                                    loginOrNot=true;
+                                } catch (Exception e) {
+                                    loginOrNot=false;
+                                }
                             } else {
                                 loginOrNot=false;
                             }
@@ -127,6 +135,8 @@ public class LoginActivity extends AppCompatActivity {
 //                serverResp.setText("Error getting response");
             }
         });
+        CookieManager cookieManager = new CookieManager(new PersistentCookieStore(this), CookiePolicy.ACCEPT_ORIGINAL_SERVER);
+        CookieHandler.setDefault(cookieManager);
         jsonObjectRequest.setTag(REQ_TAG);
         requestQueue.add(jsonObjectRequest);
 
@@ -192,7 +202,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginFailed() {
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Login fail", Toast.LENGTH_LONG).show();
 
         _loginButton.setEnabled(true);
     }

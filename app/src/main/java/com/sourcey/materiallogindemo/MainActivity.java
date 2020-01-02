@@ -38,9 +38,6 @@ public class MainActivity extends AppCompatActivity {
                 if (position==3){
                     Intent intent=new Intent(MainActivity.this,SopCategoryActivity.class);
                     startActivity(intent);
-                } else if (position==4){
-                    Intent intent=new Intent(MainActivity.this,VolleyActivity.class);
-                    startActivity(intent);
                 } else if (position==5){
                     Intent intent=new Intent(MainActivity.this,LearnCategoryActivity.class);
                     startActivity(intent);

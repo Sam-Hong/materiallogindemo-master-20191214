@@ -29,4 +29,5 @@ dependencies {
 
     implementation files('D:/Android_Studio_Project/materiallogindemo-master-20191214/libs/YouTubeAndroidPlayerApi.jar')
     implementation 'com.android.volley:volley:1.1.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
 }

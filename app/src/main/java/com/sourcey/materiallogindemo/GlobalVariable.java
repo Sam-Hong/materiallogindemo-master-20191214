@@ -3,8 +3,8 @@ package com.sourcey.materiallogindemo;
 import android.app.Application;
 
 public class GlobalVariable extends Application {
-    private boolean LoginToken;
-    private String Authorization;
+    private static boolean LoginToken;
+    private static String Authorization;
 
     public void setAuthorization(String authorization){
         this.Authorization=authorization;

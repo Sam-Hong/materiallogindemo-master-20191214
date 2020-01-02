@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,10 +13,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,6 +31,7 @@ public class ChangePasswordCategoryActivity extends AppCompatActivity {
 
     boolean editOrNot;
     String authorization;
+    RequestQueue requestQueue;
     static final String REQ_TAG = "VACTIVITY";
 
     //    @BindView(R.id.input_now_identification) EditText _NowIdentificationText;
@@ -46,6 +48,9 @@ public class ChangePasswordCategoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_change_password_category);
         ButterKnife.bind(this);
 
+        requestQueue = RequestQueueSingleton.getInstance(this.getApplicationContext())
+                .getRequestQueue();
+
         _ChangePasswordButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -57,6 +62,7 @@ public class ChangePasswordCategoryActivity extends AppCompatActivity {
 
     public void edit() {
         if (!validate()) {
+            Log.e("cga", "\n\n\n======hereee");
             onEditFailed();
             return;
         }
@@ -75,9 +81,6 @@ public class ChangePasswordCategoryActivity extends AppCompatActivity {
 
         // TODO: Implement your own authentication logic here.
 
-        GlobalVariable gv = (GlobalVariable) getApplicationContext();
-        authorization = gv.getAuthorization();
-
         if (newPassword.equals(confirmPassword)) {
             JSONObject json = new JSONObject();
             try {
@@ -92,7 +95,7 @@ public class ChangePasswordCategoryActivity extends AppCompatActivity {
                         public void onResponse(JSONObject response) {
                             try {
                                 if (response.getString("data").length() > 0) {
-                                    authorization = response.getString("accessToken");
+                                    authorization = response.getJSONObject("data").getString("accessToken");
                                     GlobalVariable gv = (GlobalVariable) getApplicationContext();
                                     gv.setAuthorization(authorization);
                                     editOrNot = true;
@@ -106,21 +109,22 @@ public class ChangePasswordCategoryActivity extends AppCompatActivity {
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(ChangePasswordCategoryActivity.this, "An error occurred", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ChangePasswordCategoryActivity.this, error.toString(), Toast.LENGTH_LONG).show();
                     error.printStackTrace();
                 }
             }) {
                 /* Passing some request headers*/
                 @Override
                 public Map<String, String> getHeaders() {
-                    Map<String, String> headers = new HashMap<>();
-//                    headers.put("Content-Type", "application/json");
+                    GlobalVariable gv = (GlobalVariable) getApplicationContext();
+                    authorization = gv.getAuthorization();
+                    Map<String, String> headers = new HashMap<String, String>();
                     headers.put("Authorization", authorization);
                     return headers;
                 }
             };
             jsonObjectRequest.setTag(REQ_TAG);
-            Volley.newRequestQueue(this).add(jsonObjectRequest);
+            requestQueue.add(jsonObjectRequest);
         }
 
         /*if (newPassword.equals(confirmPassword)){
