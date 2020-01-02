@@ -41,26 +41,31 @@ public class CgaAdminRulesActivity extends AppCompatActivity {
             }
         };
 
-        AdapterView.OnItemClickListener itemClickListener=new AdapterView.OnItemClickListener() {
+        AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView listView, View itemView, int position, long id) {
                 if (position==0){
-                    Intent intent=new Intent(CgaAdminRulesActivity.this,AdminRulesFY.class);
+                    Intent intent=new Intent(CgaAdminRulesActivity.this,WebViewActivity.class);
+                    intent.putExtra("url","https://drive.google.com/file/d/18xWaE-0_GXc0b8HMXr0cVIuRraWthegG/preview");
                     startActivity(intent);
                 }
-                else if (position==1){
-                    Intent intent=new Intent(CgaAdminRulesActivity.this,AdminRulesVio.class);
+                else if (position==1) {
+                    Intent intent = new Intent(CgaAdminRulesActivity.this, WebViewActivity.class);
+                    intent.putExtra("url", "https://drive.google.com/file/d/1YOGpsr5HRSEDuwbj3a_KldD46Sd3NM5y/preview");
                     startActivity(intent);
                 }
                 else if (position==2){
-                    Intent intent=new Intent(CgaAdminRulesActivity.this,AdminRulesCompen.class);
+                    Intent intent = new Intent(CgaAdminRulesActivity.this, WebViewActivity.class);
+                    intent.putExtra("url", "https://drive.google.com/file/d/1kWPSBqnrxUEFFc_2r3R6cwuXr7pKOJpj/preview");
                     startActivity(intent);
                 }
                 else if (position==3){
-                    Intent intent=new Intent(CgaAdminRulesActivity.this,AdminRulesCivTrain.class);
+                    Intent intent = new Intent(CgaAdminRulesActivity.this, WebViewActivity.class);
+                    intent.putExtra("url", "https://drive.google.com/file/d/1uUUIdWKhaeDncSrFw5VeXy1wwzteLPdV/preview");
                     startActivity(intent);
                 }
                 else if (position==4){
-                    Intent intent=new Intent(CgaAdminRulesActivity.this,AdminRulesCodeCPO.class);
+                    Intent intent = new Intent(CgaAdminRulesActivity.this, WebViewActivity.class);
+                    intent.putExtra("url", "https://drive.google.com/file/d/1RVQcjHaAe8yV08M0wZ9ayeHwItso4S_l/preview");
                     startActivity(intent);
                 }
                 else if (position==5){
@@ -72,7 +77,8 @@ public class CgaAdminRulesActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else if (position==7){
-                    Intent intent=new Intent(CgaAdminRulesActivity.this,AdminRulesDisRef.class);
+                    Intent intent = new Intent(CgaAdminRulesActivity.this, WebViewActivity.class);
+                    intent.putExtra("url", "https://drive.google.com/file/d/1_tLUNM4sNdw90DcQzp52KSXgM9LnpIPM/preview");
                     startActivity(intent);
                 }
                 else if (position==8){
@@ -96,7 +102,8 @@ public class CgaAdminRulesActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else if (position==13){
-                    Intent intent=new Intent(CgaAdminRulesActivity.this,AdminRulesCGAward.class);
+                    Intent intent = new Intent(CgaAdminRulesActivity.this, WebViewActivity.class);
+                    intent.putExtra("url", "https://drive.google.com/file/d/1SuVPNaV3ZO47YzXLqtvGpnG3VYkTgX84/preview");
                     startActivity(intent);
                 }
                 else if (position==14){
@@ -112,15 +119,18 @@ public class CgaAdminRulesActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else if (position==17){
-                    Intent intent=new Intent(CgaAdminRulesActivity.this,AdminRulesEmail.class);
+                    Intent intent = new Intent(CgaAdminRulesActivity.this, WebViewActivity.class);
+                    intent.putExtra("url", "https://drive.google.com/file/d/1sAOBNQRbMRZpREIZeyCh_XZvEQG56ZmT/preview");
                     startActivity(intent);
                 }
                 else if (position==18){
-                    Intent intent=new Intent(CgaAdminRulesActivity.this,AdminRulesRelics.class);
+                    Intent intent = new Intent(CgaAdminRulesActivity.this, WebViewActivity.class);
+                    intent.putExtra("url", "https://drive.google.com/file/d/1LZufRETsI6-2rWPz8DYM2JhtV3HM2GGw/preview");
                     startActivity(intent);
                 }
                 else if (position==19){
-                    Intent intent=new Intent(CgaAdminRulesActivity.this,AdminRulesSexHara.class);
+                    Intent intent = new Intent(CgaAdminRulesActivity.this, WebViewActivity.class);
+                    intent.putExtra("url", "https://drive.google.com/file/d/1PR99uHZaVyc53QOQmEu26gM73h2JOzyI/preview");
                     startActivity(intent);
                 }
                 else if (position==20){
@@ -128,7 +138,8 @@ public class CgaAdminRulesActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else if (position==21){
-                    Intent intent=new Intent(CgaAdminRulesActivity.this,AdminRulesARules.class);
+                    Intent intent = new Intent(CgaAdminRulesActivity.this, WebViewActivity.class);
+                    intent.putExtra("url", "https://drive.google.com/file/d/1XbawjqyFjx6-O_dxMz5qbnx7yLnFQPMz/preview");
                     startActivity(intent);
                 }
                 else if (position==22){
@@ -140,7 +151,8 @@ public class CgaAdminRulesActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else if (position==24){
-                    Intent intent=new Intent(CgaAdminRulesActivity.this,AdminRulesScope.class);
+                    Intent intent = new Intent(CgaAdminRulesActivity.this, WebViewActivity.class);
+                    intent.putExtra("url", "https://drive.google.com/file/d/19ERXCltRssbB0MGocwn28aNu5KZvrBk4/preview");
                     startActivity(intent);
                 }
             }

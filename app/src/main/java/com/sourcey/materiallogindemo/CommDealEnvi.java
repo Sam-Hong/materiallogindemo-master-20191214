@@ -24,7 +24,7 @@ public class CommDealEnvi extends AppCompatActivity {
         DutyAdapter dutyAdapter = new DutyAdapter(getApplicationContext(), List, flags);
         simpleList.setAdapter(dutyAdapter);
 
-        AdapterView.OnItemClickListener itemClickListener=new AdapterView.OnItemClickListener() {
+        AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> listView, View itemView, int position, long id) {
                 if (position==0){
