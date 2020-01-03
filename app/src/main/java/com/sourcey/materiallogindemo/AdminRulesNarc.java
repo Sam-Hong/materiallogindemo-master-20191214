@@ -44,7 +44,7 @@ public class AdminRulesNarc extends AppCompatActivity {
                 }
                 else if (position==3){
                     Intent intent=new Intent(AdminRulesNarc.this,WebViewActivity.class);
-                    intent.putExtra("url","https://drive.google.com/file/d/18b-hZIhi60aZ0fNlZmjLGUFmfKDfGamv/preview");
+                    intent.putExtra("url","https://drive.google.com/file/d/1Nni0HgAz6KqJwoAxCdp9mdUnhPSsIlRm/preview");
                     startActivity(intent);
                 }
                 else if (position==4){
