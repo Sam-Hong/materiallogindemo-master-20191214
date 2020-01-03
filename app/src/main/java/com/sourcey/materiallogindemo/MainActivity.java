@@ -44,6 +44,10 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent=new Intent(MainActivity.this,FiringBulletinActivity.class);
                     startActivity(intent);
                 }
+                else if (position==2){
+                    Intent intent=new Intent(MainActivity.this,CgStatisticsActivity.class);
+                    startActivity(intent);
+                }
                 else if (position==3){
                     Intent intent=new Intent(MainActivity.this,SopCategoryActivity.class);
                     startActivity(intent);
