@@ -10,7 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
-
+//try to push current project to github for Kris
     private boolean login_token;
     ListView simpleList;
     String List[] = {"海巡法規", "射擊通報", "海巡統計", "標準作業程序", "特殊船舶", "數位學習", "常見船舶", "變更密碼"};
