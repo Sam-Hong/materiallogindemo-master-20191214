@@ -15,7 +15,7 @@ import com.google.android.youtube.player.YouTubePlayerView;
 public class YoutubeViewActivity extends AppCompatActivity implements YouTubePlayer.OnInitializedListener {
 
     private static final int RECOVERY_REQUEST = 1;
-    public static final String API_KEY="AIzaSyDyAOb3PB3dlN4JdPk-tvRSP9_sYJsq56I";
+    public static final String API_KEY = "AIzaSyDyAOb3PB3dlN4JdPk-tvRSP9_sYJsq56I";
     //https://www.youtube.com/watch?v=<video_id>
     public static String VIDEO_ID;
     private YouTubePlayerView youTubeView;
@@ -25,14 +25,14 @@ public class YoutubeViewActivity extends AppCompatActivity implements YouTubePla
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_youtube_view);
 
-        Intent intent=getIntent();
-        VIDEO_ID=intent.getStringExtra("VIDEO_ID");
+        Intent intent = getIntent();
+        VIDEO_ID = intent.getStringExtra("VIDEO_ID");
 
         /*youTubeView = (YouTubePlayerView) findViewById(R.id.show_youtube_view);
         youTubeView.initialize(API_KEY, this);*/
 
-        YouTubePlayerSupportFragment frag=(YouTubePlayerSupportFragment) getSupportFragmentManager().findFragmentById(R.id.youtube_fragment);
-        frag.initialize(API_KEY,this);
+        YouTubePlayerSupportFragment frag = (YouTubePlayerSupportFragment) getSupportFragmentManager().findFragmentById(R.id.youtube_fragment);
+        frag.initialize(API_KEY, this);
     }
 
     @Override
@@ -80,14 +80,13 @@ public class YoutubeViewActivity extends AppCompatActivity implements YouTubePla
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.home) {
-            Intent i=new Intent(this,MainActivity.class);
+            Intent i = new Intent(this, MainActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
-        }
-        else if (id==R.id.logout){
-            GlobalVariable gv=(GlobalVariable)getApplicationContext();
+        } else if (id == R.id.logout) {
+            GlobalVariable gv = (GlobalVariable) getApplicationContext();
             gv.setLoginToken(false);
-            Intent i=new Intent(this,MainActivity.class);
+            Intent i = new Intent(this, MainActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
         }

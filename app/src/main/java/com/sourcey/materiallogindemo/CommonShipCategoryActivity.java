@@ -22,36 +22,33 @@ public class CommonShipCategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_common_ship_category);
 
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, List){
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, List) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
-                View view =super.getView(position, convertView, parent);
-                TextView textView=(TextView) view.findViewById(android.R.id.text1);
+                View view = super.getView(position, convertView, parent);
+                TextView textView = (TextView) view.findViewById(android.R.id.text1);
                 textView.setTextColor(Color.WHITE);
                 return view;
             }
         };
-        AdapterView.OnItemClickListener itemClickListener=new AdapterView.OnItemClickListener() {
+        AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> listView, View itemView, int position, long id) {
-                if (position==0){
-                    Intent intent=new Intent(CommonShipCategoryActivity.this,WebViewActivity.class);
-                    intent.putExtra("url","https://drive.google.com/file/d/17VGpuhCmhxPCQUqDq8dVPAE2sA31Eqo6/view");
+                if (position == 0) {
+                    Intent intent = new Intent(CommonShipCategoryActivity.this, WebViewActivity.class);
+                    intent.putExtra("url", "https://drive.google.com/file/d/17VGpuhCmhxPCQUqDq8dVPAE2sA31Eqo6/view");
                     startActivity(intent);
-                }
-                else if (position==1){
-                    Intent intent=new Intent(CommonShipCategoryActivity.this,WebViewActivity.class);
-                    intent.putExtra("url","https://drive.google.com/file/d/1LtBeDawOcPsKRkO4S86JI1DYiJ5HAP0f/view");
+                } else if (position == 1) {
+                    Intent intent = new Intent(CommonShipCategoryActivity.this, WebViewActivity.class);
+                    intent.putExtra("url", "https://drive.google.com/file/d/1LtBeDawOcPsKRkO4S86JI1DYiJ5HAP0f/view");
                     startActivity(intent);
-                }
-                else if (position==2){
-                    Intent intent=new Intent(CommonShipCategoryActivity.this,WebViewActivity.class);
-                    intent.putExtra("url","https://drive.google.com/file/d/1QOexkB584J2WWTxphelN1KBM1rmdSl_I/view");
+                } else if (position == 2) {
+                    Intent intent = new Intent(CommonShipCategoryActivity.this, WebViewActivity.class);
+                    intent.putExtra("url", "https://drive.google.com/file/d/1QOexkB584J2WWTxphelN1KBM1rmdSl_I/view");
                     startActivity(intent);
-                }
-                else if (position==3){
-                    Intent intent=new Intent(CommonShipCategoryActivity.this,WebViewActivity.class);
-                    intent.putExtra("url","https://drive.google.com/file/d/1YU0XWAz2L9fRI-Z1EQkMmE6YeIVLibP8/view");
+                } else if (position == 3) {
+                    Intent intent = new Intent(CommonShipCategoryActivity.this, WebViewActivity.class);
+                    intent.putExtra("url", "https://drive.google.com/file/d/1YU0XWAz2L9fRI-Z1EQkMmE6YeIVLibP8/view");
                     startActivity(intent);
                 }
             }
@@ -77,14 +74,13 @@ public class CommonShipCategoryActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.home) {
-            Intent i=new Intent(this,MainActivity.class);
+            Intent i = new Intent(this, MainActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
-        }
-        else if (id==R.id.logout){
-            GlobalVariable gv=(GlobalVariable)getApplicationContext();
+        } else if (id == R.id.logout) {
+            GlobalVariable gv = (GlobalVariable) getApplicationContext();
             gv.setLoginToken(false);
-            Intent i=new Intent(this,MainActivity.class);
+            Intent i = new Intent(this, MainActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
         }

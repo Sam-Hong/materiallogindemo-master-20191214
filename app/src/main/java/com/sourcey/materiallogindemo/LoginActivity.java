@@ -29,16 +29,19 @@ import butterknife.ButterKnife;
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
-    boolean loginOrNot=false;
+    boolean loginOrNot = false;
     String authorization;
     RequestQueue requestQueue;
     static final String REQ_TAG = "VACTIVITY";
 
-    @BindView(R.id.input_identification) EditText _identificationText;
-    @BindView(R.id.input_password) EditText _passwordText;
-    @BindView(R.id.btn_login) Button _loginButton;
+    @BindView(R.id.input_identification)
+    EditText _identificationText;
+    @BindView(R.id.input_password)
+    EditText _passwordText;
+    @BindView(R.id.btn_login)
+    Button _loginButton;
 //    @BindView(R.id.link_signup) TextView _signupLink;
-    
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,8 +103,8 @@ public class LoginActivity extends AppCompatActivity {
 
         JSONObject json = new JSONObject();
         try {
-            json.put("identification",identification);
-            json.put("birthday",password);
+            json.put("identification", identification);
+            json.put("birthday", password);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -112,18 +115,18 @@ public class LoginActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
 //                        serverResp.setText("String Response : "+ response.toString());
                         try {
-                            if (response.getString("data").length()>0){
+                            if (response.getString("data").length() > 0) {
 
                                 try {
                                     authorization = response.getJSONObject("data").getString("accessToken");
                                     GlobalVariable gv = (GlobalVariable) getApplicationContext();
                                     gv.setAuthorization(authorization);
-                                    loginOrNot=true;
+                                    loginOrNot = true;
                                 } catch (Exception e) {
-                                    loginOrNot=false;
+                                    loginOrNot = false;
                                 }
                             } else {
-                                loginOrNot=false;
+                                loginOrNot = false;
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -165,9 +168,9 @@ public class LoginActivity extends AppCompatActivity {
                 new Runnable() {
                     public void run() {
                         // On complete call either onLoginSuccess or onLoginFailed
-                        if(loginOrNot){
+                        if (loginOrNot) {
                             onLoginSuccess();
-                        }else{
+                        } else {
                             onLoginFailed();
                             progressDialog.dismiss();
                         }
@@ -196,7 +199,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginSuccess() {
         _loginButton.setEnabled(true);
-        GlobalVariable gv=(GlobalVariable) getApplicationContext();
+        GlobalVariable gv = (GlobalVariable) getApplicationContext();
         gv.setLoginToken(true);
         finish();
     }
@@ -213,7 +216,7 @@ public class LoginActivity extends AppCompatActivity {
         String identification = _identificationText.getText().toString();
         String password = _passwordText.getText().toString();
 
-        if (identification.isEmpty()){ // || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        if (identification.isEmpty()) { // || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             _identificationText.setError("enter a valid identification");
             valid = false;
         } else {

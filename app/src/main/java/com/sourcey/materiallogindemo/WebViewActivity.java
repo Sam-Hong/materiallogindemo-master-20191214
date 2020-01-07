@@ -13,6 +13,7 @@ import android.webkit.WebViewClient;
 public class WebViewActivity extends AppCompatActivity {
 
     String url;
+
     @SuppressLint("SetJavaScriptEnabled")
 
     @Override
@@ -20,10 +21,10 @@ public class WebViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view);
 
-        Intent intent=getIntent();
-        url=intent.getStringExtra("url");
+        Intent intent = getIntent();
+        url = intent.getStringExtra("url");
 
-        WebView myWebView=(WebView)findViewById(R.id.web_view);
+        WebView myWebView = (WebView) findViewById(R.id.web_view);
         myWebView.getSettings().setJavaScriptEnabled(true);
         myWebView.getSettings().setPluginState(WebSettings.PluginState.ON);
         myWebView.setWebViewClient(new WebViewClient());
@@ -47,14 +48,13 @@ public class WebViewActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.home) {
-            Intent i=new Intent(this,MainActivity.class);
+            Intent i = new Intent(this, MainActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
-        }
-        else if (id==R.id.logout){
-            GlobalVariable gv=(GlobalVariable)getApplicationContext();
+        } else if (id == R.id.logout) {
+            GlobalVariable gv = (GlobalVariable) getApplicationContext();
             gv.setLoginToken(false);
-            Intent i=new Intent(this,MainActivity.class);
+            Intent i = new Intent(this, MainActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
         }

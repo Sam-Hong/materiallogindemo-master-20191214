@@ -16,6 +16,7 @@ public class RequestQueueSingleton {
         context = ctx;
         requestQueue = getRequestQueue();
     }
+
     public static synchronized RequestQueueSingleton getInstance(Context context) {
         if (requestQueueSingleton == null) {
             requestQueueSingleton = new RequestQueueSingleton(context);

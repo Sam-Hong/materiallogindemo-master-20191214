@@ -24,24 +24,22 @@ public class LearnCategoryActivity extends AppCompatActivity {
         CategoryAdapter categoryAdapter = new CategoryAdapter(getApplicationContext(), CategoryList, flags);
         simpleList.setAdapter(categoryAdapter);
 
-        AdapterView.OnItemClickListener itemClickListener=new AdapterView.OnItemClickListener() {
+        AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> listView, View itemView, int position, long id) {
-                if (position==0){
-                    Intent intent=new Intent(LearnCategoryActivity.this,LawCourseActivity.class);
+                if (position == 0) {
+                    Intent intent = new Intent(LearnCategoryActivity.this, LawCourseActivity.class);
                     startActivity(intent);
-                }
-                else if (position==1){
-                    Intent intent=new Intent(LearnCategoryActivity.this,DutyCourseActivity.class);
+                } else if (position == 1) {
+                    Intent intent = new Intent(LearnCategoryActivity.this, DutyCourseActivity.class);
                     startActivity(intent);
-                }
-                else if (position==2){
-                    Intent intent=new Intent(LearnCategoryActivity.this,EnglishCourseActivity.class);
+                } else if (position == 2) {
+                    Intent intent = new Intent(LearnCategoryActivity.this, EnglishCourseActivity.class);
                     startActivity(intent);
                 }
             }
         };
-        ListView listView =(ListView) findViewById(R.id.list_courses);
+        ListView listView = (ListView) findViewById(R.id.list_courses);
         listView.setOnItemClickListener(itemClickListener);
     }
 
@@ -61,14 +59,13 @@ public class LearnCategoryActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.home) {
-            Intent i=new Intent(this,MainActivity.class);
+            Intent i = new Intent(this, MainActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
-        }
-        else if (id==R.id.logout){
-            GlobalVariable gv=(GlobalVariable)getApplicationContext();
+        } else if (id == R.id.logout) {
+            GlobalVariable gv = (GlobalVariable) getApplicationContext();
             gv.setLoginToken(false);
-            Intent i=new Intent(this,MainActivity.class);
+            Intent i = new Intent(this, MainActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
         }

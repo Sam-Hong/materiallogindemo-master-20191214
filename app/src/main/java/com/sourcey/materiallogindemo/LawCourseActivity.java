@@ -12,8 +12,8 @@ import android.widget.ListView;
 public class LawCourseActivity extends AppCompatActivity {
 
     ListView simpleList;
-    String List[] = {"pdf","pdf","pdf","pdf"};
-    String flags[] = {"海岸巡防法","動植物檢疫法規","災害防救法規","水域遊憩法規"};
+    String List[] = {"pdf", "pdf", "pdf", "pdf"};
+    String flags[] = {"海岸巡防法", "動植物檢疫法規", "災害防救法規", "水域遊憩法規"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,35 +24,32 @@ public class LawCourseActivity extends AppCompatActivity {
         LawAdapter lawAdapter = new LawAdapter(getApplicationContext(), List, flags);
         simpleList.setAdapter(lawAdapter);
 
-        AdapterView.OnItemClickListener itemClickListener=new AdapterView.OnItemClickListener() {
+        AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> listView, View itemView, int position, long id) {
-                if (position==0){
-                    Intent intent=new Intent(LawCourseActivity.this,WebViewActivity.class);
-                    intent.putExtra("url","https://drive.google.com/file/d/1Y-OuKwJqmJhhhxN2Z1-pbwA2nxmRQf4C/view");
+                if (position == 0) {
+                    Intent intent = new Intent(LawCourseActivity.this, WebViewActivity.class);
+                    intent.putExtra("url", "https://drive.google.com/file/d/1Y-OuKwJqmJhhhxN2Z1-pbwA2nxmRQf4C/view");
 //                    intent.putExtra("url","http://www.cga.gov.tw/CgaSearchZone/web/index#"); //for test
 //                    Intent browserIntent=new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.cga.gov.tw/wralawgip/FileDownload.jsp?id=8a8181db69b43f60016b8c71a4f2004d"));
                     startActivity(intent);
 //                    startActivity(browserIntent);
-                }
-                else if (position==1){
-                    Intent intent=new Intent(LawCourseActivity.this,WebViewActivity.class);
-                    intent.putExtra("url","https://drive.google.com/file/d/1cVOgovq3xGNGptl_ac9aCmNQoWTC0-AX/view");
+                } else if (position == 1) {
+                    Intent intent = new Intent(LawCourseActivity.this, WebViewActivity.class);
+                    intent.putExtra("url", "https://drive.google.com/file/d/1cVOgovq3xGNGptl_ac9aCmNQoWTC0-AX/view");
                     startActivity(intent);
-                }
-                else if (position==2){
-                    Intent intent=new Intent(LawCourseActivity.this,WebViewActivity.class);
-                    intent.putExtra("url","https://drive.google.com/file/d/1-oVByDeftG4CCHui2AZcAiBcuC77hhv_/view");
+                } else if (position == 2) {
+                    Intent intent = new Intent(LawCourseActivity.this, WebViewActivity.class);
+                    intent.putExtra("url", "https://drive.google.com/file/d/1-oVByDeftG4CCHui2AZcAiBcuC77hhv_/view");
                     startActivity(intent);
-                }
-                else if (position==3){
-                    Intent intent=new Intent(LawCourseActivity.this,WebViewActivity.class);
-                    intent.putExtra("url","https://drive.google.com/file/d/1bjj1lj5ZiS5G7Wu_OIcd6wrHkTBmi_3q/view");
+                } else if (position == 3) {
+                    Intent intent = new Intent(LawCourseActivity.this, WebViewActivity.class);
+                    intent.putExtra("url", "https://drive.google.com/file/d/1bjj1lj5ZiS5G7Wu_OIcd6wrHkTBmi_3q/view");
                     startActivity(intent);
                 }
             }
         };
-        ListView listCourses=(ListView) findViewById(R.id.list_laws);
+        ListView listCourses = (ListView) findViewById(R.id.list_laws);
         listCourses.setOnItemClickListener(itemClickListener);
     }
 
@@ -72,14 +69,13 @@ public class LawCourseActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.home) {
-            Intent i=new Intent(this,MainActivity.class);
+            Intent i = new Intent(this, MainActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
-        }
-        else if (id==R.id.logout){
-            GlobalVariable gv=(GlobalVariable)getApplicationContext();
+        } else if (id == R.id.logout) {
+            GlobalVariable gv = (GlobalVariable) getApplicationContext();
             gv.setLoginToken(false);
-            Intent i=new Intent(this,MainActivity.class);
+            Intent i = new Intent(this, MainActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
         }
