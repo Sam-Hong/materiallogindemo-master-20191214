@@ -12,7 +12,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-        <activity android:name=".StatsYearFourteen"></activity>
+        <activity android:name=".ProSubjectActivity"/>
+        <activity android:name=".StatsYearFourteen" />
         <activity android:name=".StatsYearThirteen" />
         <activity android:name=".StatsYearTwelve" />
         <activity android:name=".StatsYearEleven" />

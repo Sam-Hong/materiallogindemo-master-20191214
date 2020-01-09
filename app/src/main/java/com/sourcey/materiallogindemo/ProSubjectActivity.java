@@ -1,52 +1,57 @@
 package com.sourcey.materiallogindemo;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-public class LearnCategoryActivity extends AppCompatActivity {
+public class ProSubjectActivity extends AppCompatActivity {
 
     ListView simpleList;
-    String CategoryList[] = {"法律法規", "勤務專業", "海巡英文", "專業科目"};
-    int flags[] = {R.drawable.alt05, R.drawable.alt06, R.drawable.alt07, R.drawable.alt07};
+    String[] List = {"pdf", "pdf", "pdf", "pdf"};
+    String[] flags = {"數位攝影機 (學習時間15分鐘)", "PVS-7頭戴式夜視鏡(學習時間10分鐘)"
+            , "紅外線熱影像系統 (學習時間15分鐘)", "智慧型港區監視系統 (學習時間15分鐘)"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_learn_category);
+        setContentView(R.layout.activity_pro_subject);
 
-        simpleList = (ListView) findViewById(R.id.list_courses);
-        CategoryAdapter categoryAdapter = new CategoryAdapter(getApplicationContext(), CategoryList, flags);
-        simpleList.setAdapter(categoryAdapter);
+        simpleList = (ListView) findViewById(R.id.list_Pro_Subject);
+        DutyAdapter dutyAdapter = new DutyAdapter(getApplicationContext(), List, flags);
+        simpleList.setAdapter(dutyAdapter);
 
         AdapterView.OnItemClickListener itemClickListener=new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> listView, View itemView, int position, long id) {
                 if (position==0){
-                    Intent intent=new Intent(LearnCategoryActivity.this,LawCourseActivity.class);
+                    Intent intent=new Intent(ProSubjectActivity.this,WebViewActivity.class);
+                    intent.putExtra("url","https://drive.google.com/file/d/1zz8rp8fL80Dv0OMix6fI07S9pcbu06eH/preview");
                     startActivity(intent);
                 }
                 else if (position==1){
-                    Intent intent=new Intent(LearnCategoryActivity.this,DutyCourseActivity.class);
+                    Intent intent=new Intent(ProSubjectActivity.this,WebViewActivity.class);
+                    intent.putExtra("url","https://drive.google.com/file/d/1GFy1CkfHjuv27YWLRCxfuuQMvB7r8iFg/preview");
                     startActivity(intent);
                 }
                 else if (position==2){
-                    Intent intent=new Intent(LearnCategoryActivity.this,EnglishCourseActivity.class);
+                    Intent intent=new Intent(ProSubjectActivity.this,WebViewActivity.class);
+                    intent.putExtra("url","https://drive.google.com/file/d/1cFdcQYjGyBAFsUJwAElzSA479uMORht3/preview");
                     startActivity(intent);
                 }
-                else if (position==3) {
-                    Intent intent=new Intent(LearnCategoryActivity.this,ProSubjectActivity.class);
+                else if (position==3){
+                    Intent intent=new Intent(ProSubjectActivity.this,WebViewActivity.class);
+                    intent.putExtra("url","https://drive.google.com/file/d/1q0u3yml3es8ZbOt0M-AcsbrfjQiwdwIP/preview");
                     startActivity(intent);
                 }
             }
         };
-        ListView listView =(ListView) findViewById(R.id.list_courses);
-        listView.setOnItemClickListener(itemClickListener);
+        ListView listCourses=(ListView) findViewById(R.id.list_Pro_Subject);
+        listCourses.setOnItemClickListener(itemClickListener);
     }
 
     @Override
@@ -79,4 +84,6 @@ public class LearnCategoryActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
+
