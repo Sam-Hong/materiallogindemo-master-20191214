@@ -12,8 +12,8 @@ import android.widget.ListView;
 public class LearnCategoryActivity extends AppCompatActivity {
 
     ListView simpleList;
-    String CategoryList[] = {"法律法規", "勤務專業", "海巡英文"};
-    int flags[] = {R.drawable.alt05, R.drawable.alt06, R.drawable.alt07};
+    String CategoryList[] = {"法律法規", "勤務專業", "海巡英文", "專業科目"};
+    int flags[] = {R.drawable.alt05, R.drawable.alt06, R.drawable.alt07, R.drawable.alt08};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,10 @@ public class LearnCategoryActivity extends AppCompatActivity {
                     startActivity(intent);
                 } else if (position == 2) {
                     Intent intent = new Intent(LearnCategoryActivity.this, EnglishCourseActivity.class);
+                    startActivity(intent);
+                }
+                else if (position==3) {
+                    Intent intent=new Intent(LearnCategoryActivity.this,ProSubjectActivity.class);
                     startActivity(intent);
                 }
             }

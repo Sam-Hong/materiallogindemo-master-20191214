@@ -35,17 +35,32 @@ public class MainActivity extends AppCompatActivity {
         AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> listView, View itemView, int position, long id) {
-                if (position == 3) {
-                    Intent intent = new Intent(MainActivity.this, SopCategoryActivity.class);
+                if (position==0) {
+                    Intent intent=new Intent(MainActivity.this,CgaRegulationsActivity.class);
                     startActivity(intent);
-                } else if (position == 5) {
-                    Intent intent = new Intent(MainActivity.this, LearnCategoryActivity.class);
+                }
+                else if (position==1){
+                    Intent intent=new Intent(MainActivity.this,FiringBulletinActivity.class);
                     startActivity(intent);
-                } else if (position == 6) {
-                    Intent intent = new Intent(MainActivity.this, CommonShipCategoryActivity.class);
+                }
+                else if (position==2){
+                    Intent intent=new Intent(MainActivity.this,CgStatisticsActivity.class);
                     startActivity(intent);
-                } else if (position == 7) {
-                    Intent intent = new Intent(MainActivity.this, ChangePasswordCategoryActivity.class);
+                }
+                else if (position==3){
+                    Intent intent=new Intent(MainActivity.this,SopCategoryActivity.class);
+                    startActivity(intent);
+                }
+                else if (position==5){
+                    Intent intent=new Intent(MainActivity.this,LearnCategoryActivity.class);
+                    startActivity(intent);
+                }
+                else if (position==6){
+                    Intent intent=new Intent(MainActivity.this,CommonShipCategoryActivity.class);
+                    startActivity(intent);
+                }
+                else if(position==7){
+                    Intent intent=new Intent(MainActivity.this,ChangePasswordCategoryActivity.class);
                     startActivity(intent);
                 }
 
