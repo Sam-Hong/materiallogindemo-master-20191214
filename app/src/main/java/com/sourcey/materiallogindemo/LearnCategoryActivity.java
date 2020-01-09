@@ -13,7 +13,7 @@ public class LearnCategoryActivity extends AppCompatActivity {
 
     ListView simpleList;
     String CategoryList[] = {"法律法規", "勤務專業", "海巡英文", "專業科目"};
-    int flags[] = {R.drawable.alt05, R.drawable.alt06, R.drawable.alt07, R.drawable.alt07};
+    int flags[] = {R.drawable.alt05, R.drawable.alt06, R.drawable.alt07, R.drawable.alt08};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
