@@ -2,10 +2,6 @@ package com.sourcey.materiallogindemo;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -14,25 +10,47 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.net.CookieHandler;
+import java.net.CookieManager;
+import java.net.CookiePolicy;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
-    boolean loginOrNot;
+    boolean loginOrNot = false;
+    String authorization;
+    RequestQueue requestQueue;
+    static final String REQ_TAG = "VACTIVITY";
 
-    @BindView(R.id.input_identification) EditText _identificationText;
-    @BindView(R.id.input_password) EditText _passwordText;
-    @BindView(R.id.btn_login) Button _loginButton;
+    @BindView(R.id.input_identification)
+    EditText _identificationText;
+    @BindView(R.id.input_password)
+    EditText _passwordText;
+    @BindView(R.id.btn_login)
+    Button _loginButton;
 //    @BindView(R.id.link_signup) TextView _signupLink;
-    
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-        
+
+        requestQueue = RequestQueueSingleton.getInstance(this.getApplicationContext())
+                .getRequestQueue();
+
         _loginButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -52,6 +70,14 @@ public class LoginActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
             }
         });*/
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (requestQueue != null) {
+            requestQueue.cancelAll(REQ_TAG);
+        }
     }
 
     public void login() {
@@ -75,7 +101,49 @@ public class LoginActivity extends AppCompatActivity {
 
         // TODO: Implement your own authentication logic here.
 
-        if(identification.length() > 0 && password.length() >0) {
+        JSONObject json = new JSONObject();
+        try {
+            json.put("identification", identification);
+            json.put("birthday", password);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        String url = getResources().getString(R.string.json_login_url);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, json,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+//                        serverResp.setText("String Response : "+ response.toString());
+                        try {
+                            if (response.getString("data").length() > 0) {
+
+                                try {
+                                    authorization = response.getJSONObject("data").getString("accessToken");
+                                    GlobalVariable gv = (GlobalVariable) getApplicationContext();
+                                    gv.setAuthorization(authorization);
+                                    loginOrNot = true;
+                                } catch (Exception e) {
+                                    loginOrNot = false;
+                                }
+                            } else {
+                                loginOrNot = false;
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+//                serverResp.setText("Error getting response");
+            }
+        });
+        CookieManager cookieManager = new CookieManager(new PersistentCookieStore(this), CookiePolicy.ACCEPT_ORIGINAL_SERVER);
+        CookieHandler.setDefault(cookieManager);
+        jsonObjectRequest.setTag(REQ_TAG);
+        requestQueue.add(jsonObjectRequest);
+
+        /*if(identification.length() > 0 && password.length() >0) {
             SQLiteOpenHelper TestDBHelper = new DatabaseHelper(this);
             try {
                 SQLiteDatabase db = TestDBHelper.getReadableDatabase();
@@ -94,15 +162,15 @@ public class LoginActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(this, "Database unavailable", Toast.LENGTH_SHORT);
                 toast.show();
             }
-        }
+        }*/
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
                         // On complete call either onLoginSuccess or onLoginFailed
-                        if(loginOrNot){
+                        if (loginOrNot) {
                             onLoginSuccess();
-                        }else{
+                        } else {
                             onLoginFailed();
                             progressDialog.dismiss();
                         }
@@ -131,13 +199,13 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginSuccess() {
         _loginButton.setEnabled(true);
-        GlobalVariable gv=(GlobalVariable) getApplicationContext();
+        GlobalVariable gv = (GlobalVariable) getApplicationContext();
         gv.setLoginToken(true);
         finish();
     }
 
     public void onLoginFailed() {
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Login fail", Toast.LENGTH_LONG).show();
 
         _loginButton.setEnabled(true);
     }
@@ -148,7 +216,7 @@ public class LoginActivity extends AppCompatActivity {
         String identification = _identificationText.getText().toString();
         String password = _passwordText.getText().toString();
 
-        if (identification.isEmpty()){ // || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        if (identification.isEmpty()) { // || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             _identificationText.setError("enter a valid identification");
             valid = false;
         } else {

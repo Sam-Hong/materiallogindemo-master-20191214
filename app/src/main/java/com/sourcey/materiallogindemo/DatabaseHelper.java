@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String KEY_ROWID = "_id";
-    public static final String KEY_IDENTIFICATION= "identification";
+    public static final String KEY_IDENTIFICATION = "identification";
     public static final String KEY_PASSWORD = "password";
 //    private static final String TAG = "DBAdapter";
 
@@ -21,8 +21,8 @@ class DatabaseHelper extends SQLiteOpenHelper {
     private SQLiteDatabase db;
 
     DatabaseHelper(Context context) {
-        super(context,DB_NAME, null, DB_VERSION);
-        if(android.os.Build.VERSION.SDK_INT >= 4.2){
+        super(context, DB_NAME, null, DB_VERSION);
+        if (android.os.Build.VERSION.SDK_INT >= 4.2) {
             DB_PATH = context.getApplicationInfo().dataDir + "/databases/";
         } else {
             DB_PATH = "/data/data/" + context.getPackageName() + "/databases/";
@@ -32,7 +32,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        updateDatabase(db,0,DB_VERSION);
+        updateDatabase(db, 0, DB_VERSION);
     }
 
     @Override
@@ -40,18 +40,18 @@ class DatabaseHelper extends SQLiteOpenHelper {
             /*Log.w(TAG, "Upgrading database from version " + oldVersion
                     + " to "
                     + newVersion + ", which will destroy all old data");*/
-        updateDatabase(db,oldVersion,newVersion);
+        updateDatabase(db, oldVersion, newVersion);
     }
 
-    private static void updateDatabase(SQLiteDatabase db, int oldVersion, int newVersion){
-        if (oldVersion<1){
+    private static void updateDatabase(SQLiteDatabase db, int oldVersion, int newVersion) {
+        if (oldVersion < 1) {
 //            db.openOrCreateDatabase(DB_PATH+"TestDB.db",null);
             db.execSQL("create table users (_id integer primary key autoincrement, "
                     + "identification text not null, "
                     + "password text not null);");
         }
-        if (oldVersion<2){
-            AddUser(db,"a123","a123");
+        if (oldVersion < 2) {
+            AddUser(db, "a123", "s123");
         }
     }
 

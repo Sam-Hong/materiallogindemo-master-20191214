@@ -1,14 +1,10 @@
 package com.sourcey.materiallogindemo;
 
 import android.app.ProgressDialog;
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,23 +12,44 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ChangePasswordCategoryActivity extends AppCompatActivity {
 
     boolean editOrNot;
+    String authorization;
+    RequestQueue requestQueue;
+    static final String REQ_TAG = "VACTIVITY";
 
-    @BindView(R.id.input_now_identification) EditText _NowIdentificationText;
-    @BindView(R.id.input_new_password) EditText _NewPasswordText;
-    @BindView(R.id.input_confirm_password) EditText _ConfirmPasswordText;
-    @BindView(R.id.btn_change_password) Button _ChangePasswordButton;
+    //    @BindView(R.id.input_now_identification) EditText _NowIdentificationText;
+    @BindView(R.id.input_new_password)
+    EditText _NewPasswordText;
+    @BindView(R.id.input_confirm_password)
+    EditText _ConfirmPasswordText;
+    @BindView(R.id.btn_change_password)
+    Button _ChangePasswordButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password_category);
         ButterKnife.bind(this);
+
+        requestQueue = RequestQueueSingleton.getInstance(this.getApplicationContext())
+                .getRequestQueue();
 
         _ChangePasswordButton.setOnClickListener(new View.OnClickListener() {
 
@@ -43,8 +60,9 @@ public class ChangePasswordCategoryActivity extends AppCompatActivity {
         });
     }
 
-    public void edit(){
+    public void edit() {
         if (!validate()) {
+            Log.e("cga", "\n\n\n======hereee");
             onEditFailed();
             return;
         }
@@ -57,13 +75,59 @@ public class ChangePasswordCategoryActivity extends AppCompatActivity {
         progressDialog.setMessage("Authenticating...");
         progressDialog.show();
 
-        String nowIdentification = _NowIdentificationText.getText().toString();
+//        String nowIdentification = _NowIdentificationText.getText().toString();
         String newPassword = _NewPasswordText.getText().toString();
         String confirmPassword = _ConfirmPasswordText.getText().toString();
 
         // TODO: Implement your own authentication logic here.
 
-        if (newPassword.equals(confirmPassword)){
+        if (newPassword.equals(confirmPassword)) {
+            JSONObject json = new JSONObject();
+            try {
+                json.put("password", newPassword);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            String url = getResources().getString(R.string.json_reset_url);
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, json,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                if (response.getString("data").length() > 0) {
+                                    authorization = response.getJSONObject("data").getString("accessToken");
+                                    GlobalVariable gv = (GlobalVariable) getApplicationContext();
+                                    gv.setAuthorization(authorization);
+                                    editOrNot = true;
+                                } else {
+                                    editOrNot = false;
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(ChangePasswordCategoryActivity.this, error.toString(), Toast.LENGTH_LONG).show();
+                    error.printStackTrace();
+                }
+            }) {
+                /* Passing some request headers*/
+                @Override
+                public Map<String, String> getHeaders() {
+                    GlobalVariable gv = (GlobalVariable) getApplicationContext();
+                    authorization = gv.getAuthorization();
+                    Map<String, String> headers = new HashMap<String, String>();
+                    headers.put("Authorization", authorization);
+                    return headers;
+                }
+            };
+            jsonObjectRequest.setTag(REQ_TAG);
+            requestQueue.add(jsonObjectRequest);
+        }
+
+        /*if (newPassword.equals(confirmPassword)){
             SQLiteOpenHelper TestDBHelper = new DatabaseHelper(this);
             try {
                 SQLiteDatabase db = TestDBHelper.getWritableDatabase();
@@ -85,15 +149,15 @@ public class ChangePasswordCategoryActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(this, "Database unavailable", Toast.LENGTH_SHORT);
                 toast.show();
             }
-        }
+        }*/
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
                         // On complete call either onLoginSuccess or onLoginFailed
-                        if(editOrNot){
+                        if (editOrNot) {
                             onEditSuccess();
-                        }else{
+                        } else {
                             onEditFailed();
                             progressDialog.dismiss();
                         }
@@ -117,18 +181,18 @@ public class ChangePasswordCategoryActivity extends AppCompatActivity {
     public boolean validate() {
         boolean valid = true;
 
-        String NowIdentification=_NowIdentificationText.getText().toString();
+//        String NowIdentification=_NowIdentificationText.getText().toString();
         String NewPassword = _NewPasswordText.getText().toString();
         String ConfirmPassword = _ConfirmPasswordText.getText().toString();
 
-        if (NowIdentification.isEmpty()){
+        /*if (NowIdentification.isEmpty()){
             _NowIdentificationText.setError("enter current identification");
             valid = false;
         } else {
             _NowIdentificationText.setError(null);
-        }
+        }*/
 
-        if (NewPassword.isEmpty()){
+        if (NewPassword.isEmpty()) {
             _NewPasswordText.setError("enter a new password");
             valid = false;
         } else {
@@ -161,14 +225,13 @@ public class ChangePasswordCategoryActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.home) {
-            Intent i=new Intent(this,MainActivity.class);
+            Intent i = new Intent(this, MainActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
-        }
-        else if (id==R.id.logout){
-            GlobalVariable gv=(GlobalVariable)getApplicationContext();
+        } else if (id == R.id.logout) {
+            GlobalVariable gv = (GlobalVariable) getApplicationContext();
             gv.setLoginToken(false);
-            Intent i=new Intent(this,MainActivity.class);
+            Intent i = new Intent(this, MainActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
         }

@@ -12,8 +12,8 @@ import android.widget.ListView;
 public class EnglishCourseActivity extends AppCompatActivity {
 
     ListView simpleList;
-    String List[] = {"pdf","youtube"};
-    String flags[] = {"海事英文","情境英文-非洲豬瘟安檢篇"};
+    String List[] = {"pdf", "youtube"};
+    String flags[] = {"海事英文", "情境英文-非洲豬瘟安檢篇"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,22 +24,21 @@ public class EnglishCourseActivity extends AppCompatActivity {
         EnglishAdapter englishAdapter = new EnglishAdapter(getApplicationContext(), List, flags);
         simpleList.setAdapter(englishAdapter);
 
-        AdapterView.OnItemClickListener itemClickListener=new AdapterView.OnItemClickListener() {
+        AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> listView, View itemView, int position, long id) {
-                if (position==0){
-                    Intent intent=new Intent(EnglishCourseActivity.this,WebViewActivity.class);
-                    intent.putExtra("url","https://drive.google.com/file/d/1uFZC91rmoiHfaUoaF5jkopQLAs7waEgJ/view");
+                if (position == 0) {
+                    Intent intent = new Intent(EnglishCourseActivity.this, WebViewActivity.class);
+                    intent.putExtra("url", "https://drive.google.com/file/d/1uFZC91rmoiHfaUoaF5jkopQLAs7waEgJ/view");
                     startActivity(intent);
-                }
-                else if (position==1){
-                    Intent intent=new Intent(EnglishCourseActivity.this,YoutubeViewActivity.class);
-                    intent.putExtra("VIDEO_ID","fiPccRy6ZDw");
+                } else if (position == 1) {
+                    Intent intent = new Intent(EnglishCourseActivity.this, YoutubeViewActivity.class);
+                    intent.putExtra("VIDEO_ID", "fiPccRy6ZDw");
                     startActivity(intent);
                 }
             }
         };
-        ListView listCourses=(ListView) findViewById(R.id.list_englishs);
+        ListView listCourses = (ListView) findViewById(R.id.list_englishs);
         listCourses.setOnItemClickListener(itemClickListener);
     }
 
@@ -59,14 +58,13 @@ public class EnglishCourseActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.home) {
-            Intent i=new Intent(this,MainActivity.class);
+            Intent i = new Intent(this, MainActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
-        }
-        else if (id==R.id.logout){
-            GlobalVariable gv=(GlobalVariable)getApplicationContext();
+        } else if (id == R.id.logout) {
+            GlobalVariable gv = (GlobalVariable) getApplicationContext();
             gv.setLoginToken(false);
-            Intent i=new Intent(this,MainActivity.class);
+            Intent i = new Intent(this, MainActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
         }

@@ -10,11 +10,11 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
-
+//try to push current project to github for Kris
     private boolean login_token;
     ListView simpleList;
-    String List[] = {"海巡法規", "射擊通報", "海巡統計", "標準作業程序", "特殊船舶", "數位學習","常見船舶","變更密碼"};
-    int flags[] = {R.drawable.opt01, R.drawable.opt02, R.drawable.opt03, R.drawable.opt04, R.drawable.opt05, R.drawable.opt06,R.drawable.opt07,R.drawable.opt08};
+    String List[] = {"海巡法規", "射擊通報", "海巡統計", "標準作業程序", "特殊船舶", "數位學習", "常見船舶", "變更密碼"};
+    int flags[] = {R.drawable.opt01, R.drawable.opt02, R.drawable.opt03, R.drawable.opt04, R.drawable.opt05, R.drawable.opt06, R.drawable.opt07, R.drawable.opt08};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,17 +25,16 @@ public class MainActivity extends AppCompatActivity {
         MainAdapter mainAdapter = new MainAdapter(getApplicationContext(), List, flags);
         simpleList.setAdapter(mainAdapter);
 
-        GlobalVariable gv=(GlobalVariable)getApplicationContext();
-        login_token=gv.getLoginToken();
-        if(login_token!=true){
+        GlobalVariable gv = (GlobalVariable) getApplicationContext();
+        login_token = gv.getLoginToken();
+        if (login_token != true) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }
 
-        AdapterView.OnItemClickListener itemClickListener=new AdapterView.OnItemClickListener() {
+        AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> listView, View itemView, int position, long id) {
-
                 if (position==0) {
                     Intent intent=new Intent(MainActivity.this,CgaRegulationsActivity.class);
                     startActivity(intent);
@@ -67,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         };
-        ListView listView =(ListView) findViewById(R.id.list_options);
+        ListView listView = (ListView) findViewById(R.id.list_options);
         listView.setOnItemClickListener(itemClickListener);
     }
 
@@ -87,9 +86,9 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.logout) {
-            GlobalVariable gv=(GlobalVariable)getApplicationContext();
+            GlobalVariable gv = (GlobalVariable) getApplicationContext();
             gv.setLoginToken(false);
-            Intent i=new Intent(this,LoginActivity.class);
+            Intent i = new Intent(this, LoginActivity.class);
             startActivity(i);
         }
 
