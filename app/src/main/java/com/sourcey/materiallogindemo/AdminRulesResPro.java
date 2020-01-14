@@ -13,7 +13,7 @@ public class AdminRulesResPro extends AppCompatActivity {
 
     ListView simpleList;
     String[] List = {"pdf", "pdf"};
-    String[] flags = {"海岸巡防機關執行海上救難作業程序, 海岸巡防機關執行海上救難作業程序-附件1-10"};
+    String[] flags = {"海岸巡防機關執行海上救難作業程序", "海岸巡防機關執行海上救難作業程序-附件1-10"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
