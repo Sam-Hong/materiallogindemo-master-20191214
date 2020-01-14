@@ -14,22 +14,19 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class CgaRegulationsActivity extends AppCompatActivity {
+
+    ListView simpleList;
     String[] CategoryList = {"法律", "命令", "行政規則"};
+    int[] flags = {R.drawable.alt01, R.drawable.alt02, R.drawable.alt03};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cga_regulations);
 
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, CategoryList){
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                View view =super.getView(position, convertView, parent);
-                TextView textView= view.findViewById(android.R.id.text1);
-                textView.setTextColor(Color.WHITE);
-                return view;
-            }
-        };
+        simpleList = (ListView) findViewById(R.id.cga_regulations);
+        CategoryAdapter categoryAdapter = new CategoryAdapter(getApplicationContext(), CategoryList, flags);
+        simpleList.setAdapter(categoryAdapter);
 
         AdapterView.OnItemClickListener itemClickListener=new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView listView, View itemView, int position, long id) {
@@ -48,7 +45,6 @@ public class CgaRegulationsActivity extends AppCompatActivity {
             }
         };
         ListView listview = findViewById(R.id.cga_regulations);
-        listview.setAdapter(adapter);
         listview.setOnItemClickListener(itemClickListener);
     }
 
